@@ -1,73 +1,136 @@
 import React from 'react';
+import { Typography, TextField, Button, Container, Grid, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Search, GetApp } from '@mui/icons-material';
 
 function Formulario() {
+  
+  const rows = [
+    { id: 1, tipoDocumento: 'Tipo 1', numeroDocumento: '123', fechaEmision: '01/01/2023', monto: '$100', proveedor: 'Proveedor 1', xml: 'XML 1', detalle: 'Detalle 1' },
+    { id: 2, tipoDocumento: 'Tipo 2', numeroDocumento: '456', fechaEmision: '02/01/2023', monto: '$200', proveedor: 'Proveedor 2', xml: 'XML 2', detalle: 'Detalle 2' }, 
+  ];
+
   return (
-    <>
-      <div className="bg-gray-200 p-2 mb-3">
-        <h2 className="text-black text-lg font-bold">Documentos Pendientes</h2>
-      </div>
-      <div className="bg-blue-200 p-2 mx-2 justify-start">
-        <h3 className="text-black text-sm font-bold">FILTROS DE DOCUMENTOS</h3>
-      </div>
-      <div className="bg-white p-4 mx-2 shadow">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="flex flex-col">
-            <label htmlFor="estatus" className="text-black text-xs font-bold">Estatus</label>
-            <select id="estatus" className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-              <option value="">Seleccione...</option>                        
-              <option value="documentos_pendientes">Documentos Pendientes</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="tipoDocumento" className="text-black text-xs font-bold">Tipo Documento</label>
-            <select id="tipoDocumento" className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-              <option value="">Seleccione...</option>                        
-              <option value="todos">Todos</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="proveedor" className="text-black text-xs font-bold">Proveedor</label>
-            <select id="proveedor" className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-              <option value="">Seleccione...</option>                        
-              <option value="opcion">Opción 1</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="rangoEmision" className="text-black text-xs font-bold text-center">Rango de Emisión</label>
-            <div className="flex">
-              <input type="date" id="fechaInicio" className="w-80 h-9 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mr-2" />
-              <input type="date" id="fechaFin" className="w-80 h-9 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="metadato" className="text-black text-xs font-bold">Metadato</label>
-            <select id="metadato" className="w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-              <option value="">Seleccione...</option>                        
-              <option value="opcion">Opción 1</option>
-            </select>
-          </div>
-          <div className="flex flex-col mb-2">
-            <label htmlFor="ultimoValor" className="text-black text-xs font-bold">Último Valor</label>
-            <select id="ultimoValor" className="w-full p-2  text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-              <option value="">Seleccione...</option>                        
-              <option value="opcion">Opción 1</option>
-            </select>
-          </div>
-        </div>
-        <div className="flex justify-center gap-1">                    
-          <button className="bg-gray-600 p-2 ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search text-white" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-          </button>
-          <button className="bg-blue-500 p-2 ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-download text-white" viewBox="0 0 16 16">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
+    <>        
+    <Box sx={{ backgroundColor: '#f2f2f2', minHeight: '100vh' }}>        
+      <Box sx={{ backgroundColor: '#cad1dd', height: '40px', color: 'black', textAlign: 'Left', lineHeight: '100px' }}>
+        <Typography variant="h6">
+          &nbsp;&nbsp;Documentos Pendientes
+        </Typography>
+      </Box>           
+      <Box sx={{ margin: 2 }}>        
+        <Container maxWidth="xl" sx={{ backgroundColor: '#3bb6ed', height: '40px', display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+          <Typography variant="subtitle1" fontWeight="bold">
+            FILTROS DE DOCUMENTOS
+          </Typography>
+        </Container>
+        <Container maxWidth="1700px" sx={{ backgroundColor: '#fff', p: 1 }}>                    
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px', fontSize: '14px' }}>
+                  Estatus
+              </Typography>                
+              <TextField select variant="outlined" margin="normal" required fullWidth id="estatus" name="estatus" SelectProps={{ native: true, style: { height: '35px', fontSize: '15px' } }} style={{ marginTop: '0px' }} InputLabelProps={{ shrink: true, }}>
+                <option value="">Seleccione..</option>
+                <option value="documentos_pendientes">Documentos Pendientes</option>
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px' , fontSize: '14px'}}>
+                  Tipo de Documento
+              </Typography> 
+              <TextField select variant="outlined" margin="normal" required fullWidth id="tipo_documento" name="tipo_documento" SelectProps={{ native: true, style: { height: '35px', fontSize: '15px' } }} style={{ marginTop: '0px' }} InputLabelProps={{ shrink: true, }}>
+                <option value="">Seleccione...</option>
+                <option value="todos">Todos</option>
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px', fontSize: '14px'}}>
+                Proveedor
+              </Typography> 
+              <TextField select variant="outlined" margin="normal" required fullWidth id="proveedor" name="proveedor" SelectProps={{ native: true, style: { height: '35px', fontSize: '15px' } }} style={{ marginTop: '0px' }} InputLabelProps={{ shrink: true, }}>
+                <option value="">Seleccione...</option>
+                <option value="todos">Todos</option>
+              </TextField>
+            </Grid>              
+            <Grid item xs={12} sm={6} md={4} lg={4} >            
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px', fontSize: '14px'}} >
+                Rango de Emisión
+              </Typography>             
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField fullWidth variant="outlined" id="fechaInicio" name="fechaInicio" type="date" InputLabelProps={{ shrink: true, }} InputProps={{ style: { height: '35px', fontSize: '15px' }}}/>  
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField fullWidth variant="outlined" id="fechaFin" name="fechaFin" type="date" InputLabelProps={{ shrink: true, }} InputProps={{ style: { height: '35px', fontSize: '15px' }}}/>  
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px', fontSize: '14px'}}>
+                Metadato
+              </Typography> 
+              <TextField select variant="outlined" margin="normal" required fullWidth id="metadato" name="metadato" SelectProps={{ native: true, style: { height: '35px', fontSize: '15px' } }} style={{ marginTop: '0px' }} InputLabelProps={{ shrink: true, }}>
+                <option value="">Seleccione...</option>
+                <option value="opcion">Opción 1</option>
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <Typography variant="subtitle1" display="inline" style={{ marginBottom: '6px', fontSize: '14px' }}>
+                Valor
+              </Typography> 
+              <TextField select variant="outlined" margin="normal" required fullWidth id="valor" name="valor" SelectProps={{ native: true, style: { height: '35px', fontSize: '15px' } }} style={{ marginTop: '0px' }} InputLabelProps={{ shrink: true, }}>
+                <option value="">Seleccione...</option>
+                <option value="opcion">Opción 1</option>
+              </TextField>
+            </Grid>                                  
+          </Grid>          
+          <Grid container justifyContent="center" spacing={1} mt={2} alignItems="center">
+            <Grid item>
+              <Button variant="contained" color="primary" sx={{ backgroundColor: '#ccc', display: 'flex', justifyContent: 'center' }}>
+                <Search />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="secondary" sx={{ backgroundColor: '#3B82F6', display: 'flex', justifyContent: 'center' }}>
+                <GetApp />
+              </Button>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+      <Box sx={{ margin: 2 }}>
+        <Container maxWidth="1700px" sx={{ backgroundColor: '#fff' }}>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Tipo de Documento</TableCell>
+                  <TableCell>Nro de Documento</TableCell>
+                  <TableCell>Fecha de Emisión</TableCell>
+                  <TableCell>Monto</TableCell>
+                  <TableCell>Proveedor</TableCell>
+                  <TableCell>XML</TableCell>
+                  <TableCell>Detalle</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>{row.tipoDocumento}</TableCell>
+                    <TableCell>{row.numeroDocumento}</TableCell>
+                    <TableCell>{row.fechaEmision}</TableCell>
+                    <TableCell>{row.monto}</TableCell>
+                    <TableCell>{row.proveedor}</TableCell>
+                    <TableCell>{row.xml}</TableCell>
+                    <TableCell>{row.detalle}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Container>
+      </Box>
+    </Box>    
     </>
   );
 }
